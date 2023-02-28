@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 export default () => {
   mongoose
-    .connect("mongodb://localhost:27017/students")
+    .connect("mongodb://0.0.0.0:27017/socialmedia")
     .then(() => {
       console.info("Connected to MongoDB");
     })
