@@ -1,5 +1,4 @@
 import express from "express";
-//import studentRouter from "./student/routes.js";
 
 import routes from "./controllers/index.js";
 const PORT = 3000;
