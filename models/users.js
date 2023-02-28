@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-//import thoughtSchema from "./thoughts";
+import { thoughtSchema } from "./thoughts.js";
 
 const userSchema = new Schema(
   {
@@ -17,11 +17,11 @@ const userSchema = new Schema(
         return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(emailval);
       },
     },
-    //thoughts: [thoughtSchema],
+    thoughts: [thoughtSchema],
     friends: [
       {
         type: Schema.Types.ObjectId,
-        ref: "User",
+        ref: "users",
       },
     ],
   },

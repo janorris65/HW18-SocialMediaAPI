@@ -1,5 +1,4 @@
 import { Router } from "express";
-// import users from "../models/users.js";
 import User from "../models/users.js";
 const router = Router();
 
@@ -17,6 +16,7 @@ router.get("/user/:id", async (req, res) => {
   const results = {
     username: usersone[0].username,
     friends: usersone[0].friends,
+    thoughts: usersone[0].thoughts,
   };
   res.send(results);
 });
