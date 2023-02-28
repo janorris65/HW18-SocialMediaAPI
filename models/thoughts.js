@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import reactionSchema from "./reactions.js";
+import { reactionSchema } from "./reactions.js";
 
 const thoughtSchema = new Schema(
   {
@@ -31,7 +31,3 @@ const thoughtSchema = new Schema(
 
 export { thoughtSchema };
 export default model("thoughts", thoughtSchema);
-// thoughttext , string required, 1-280 char
-// createdAt , Date, default to current time stamp, getter method to format timestamp
-// username string, required
-// reactions, array of nested (embedded documents)

@@ -1,6 +1,7 @@
 import { Router } from "express";
 import Thoughts from "../models/thoughts.js";
 import User from "../models/users.js";
+import Reaction from "../models/reactions.js";
 const router = Router();
 
 // get all thoughts
@@ -54,10 +55,30 @@ router.delete("/thoughts/delete/:id", async (req, res) => {
   await Thoughts.deleteOne({ _id: req.params.id });
   res.send("deleted!");
 });
-export default router;
 
 // thoughts/:thoughtid/reactions
-
 // post to create new reaction in thoughts reaction array
+router.post("/thoughts/:thoughtid/reactions", async (req, res) => {
+  const newreaction = await Reaction.create({ ...req.body });
+  console.log("okay");
+  const reactionattach = await Thoughts.updateOne(
+    { _id: req.params.thoughtid },
+    {
+      $push: {
+        reactions: {
+          reactionBody: newreaction.reactionBody,
+          username: newreaction.username,
+        },
+      },
+    }
+  );
+  console.log(reactionattach);
+  res.send(newreaction);
+});
 
 // delete reactions by reactions id value
+router.delete("/reactions/delete/:id", async (req, res) => {
+  await Reaction.deleteOne({ _id: req.params.id });
+  res.send("deleted!");
+});
+export default router;

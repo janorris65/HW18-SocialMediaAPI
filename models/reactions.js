@@ -27,7 +27,7 @@ const reactionSchema = new Schema(
 );
 
 export { reactionSchema };
-export default model("thoughts", reactionSchema);
+export default model("reactions", reactionSchema);
 // reactions cont
 // reactionID mongooses Objectid datatype, default set to new ObjectID??? isnt this included
 // reactionBody string, required, 280 max
