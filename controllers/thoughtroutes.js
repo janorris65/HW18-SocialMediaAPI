@@ -77,8 +77,15 @@ router.post("/thoughts/:thoughtid/reactions", async (req, res) => {
 });
 
 // delete reactions by reactions id value
-router.delete("/reactions/delete/:id", async (req, res) => {
-  await Reaction.deleteOne({ _id: req.params.id });
-  res.send("deleted!");
-});
+router.delete(
+  "/reactions/:reactionid/thoughts/:thoughtid/delete",
+  async (req, res) => {
+    const thoughtreaction = await Thoughts.updateOne(
+      { _id: req.params.thoughtid },
+      { $pull: { reactions: { _id: req.params.reactionid } } }
+    );
+    res.send(thoughtreaction);
+  }
+);
+
 export default router;
